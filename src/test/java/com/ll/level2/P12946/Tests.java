@@ -16,21 +16,21 @@ public class Tests {
     @Test
     @DisplayName("n = 1일 때 [[1, 3]]")
     void t01() {
-        assertThat(new Solution()
-                .solution(1))
-                .isEqualTo(
-                        new int[][]{{1, 3}}
-                );
+        assertThat(
+                new Solution().solution(1)
+        ).isEqualTo(
+                new int[][]{{1, 3}}
+        );
     }
 
     @Test
     @DisplayName("from = 1, to = 3, n = 2일 때 [[1, 2], [1, 3], [2, 3]]")
     void t02() {
-        assertThat(new Solution()
-                .solution(2))
-                .isEqualTo(
-                        new int[][]{{1, 2}, {1, 3}, {2, 3}}
-                );
+        assertThat(
+                new Solution().solution(2)
+        ).isEqualTo(
+                new int[][]{{1, 2}, {1, 3}, {2, 3}}
+        );
     }
 
     @Test
@@ -58,7 +58,9 @@ public class Tests {
     void t05() {
         assertThat(
                 new Solution().solution(3)
-        ).isEqualTo(new int[][]{{1, 3}, {1, 2}, {3, 2}, {1, 3}, {2, 1}, {2, 3}, {1, 3}});
+        ).isEqualTo(
+                new int[][]{{1, 3}, {1, 2}, {3, 2}, {1, 3}, {2, 1}, {2, 3}, {1, 3}}
+        );
     }
 
     @Test
@@ -66,6 +68,9 @@ public class Tests {
     void t06() {
         assertThat(
                 new Solution().solution(4)
-        ).isEqualTo(new int[][]{{1, 2}, {1, 3}, {2, 3}, {1, 2}, {3, 1}, {3, 2}, {1, 2}, {1, 3}, {2, 3}, {2, 1}, {3, 1}, {2, 3}, {1, 2}, {1, 3}, {2, 3}});
+        ).isEqualTo(
+                new int[][]{{1, 2}, {1, 3}, {2, 3}, {1, 2}, {3, 1}, {3, 2}, {1, 2}, {1, 3},
+                        {2, 3}, {2, 1}, {3, 1}, {2, 3}, {1, 2}, {1, 3}, {2, 3}}
+        );
     }
 }
