@@ -1,19 +1,22 @@
 package com.ll.level2.P87377;
 
+import com.ll.TestUt;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import java.util.Set;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Tests {
+@TestMethodOrder(MethodOrderer.MethodName.class)
+public class SolutionTests {
     @Test
     @DisplayName("교점, [[1, -1, 0], [2, -1, 0]]")
     void t01() {
         assertThat(
-                new Solution().intersection(
+                (Point) TestUt.call(
+                        new Solution(),
+                        "intersection",
                         new int[]{1, -1, 0},
                         new int[]{2, -1, 0}
                 )
@@ -26,7 +29,9 @@ public class Tests {
     @DisplayName("교점, [[1, -1, 0], [4, -1, 0]]")
     void t01_2() {
         assertThat(
-                new Solution().intersection(
+                (Point) TestUt.call(
+                        new Solution(),
+                        "intersection",
                         new int[]{1, -1, 0},
                         new int[]{4, -1, 0}
                 )
@@ -39,7 +44,9 @@ public class Tests {
     @DisplayName("교점, [[2, -1, 0], [4, -1, 0]]")
     void t01_3() {
         assertThat(
-                new Solution().intersection(
+                (Point) TestUt.call(
+                        new Solution(),
+                        "intersection",
                         new int[]{2, -1, 0},
                         new int[]{4, -1, 0}
                 )
@@ -52,7 +59,9 @@ public class Tests {
     @DisplayName("교점, [[0, 1, -1], [1, 0, -1]]")
     void t01_4() {
         assertThat(
-                new Solution().intersection(
+                (Point) TestUt.call(
+                        new Solution(),
+                        "intersection",
                         new int[]{0, 1, -1},
                         new int[]{1, 0, -1}
                 )
@@ -65,7 +74,9 @@ public class Tests {
     @DisplayName("교점, [[0, 1, -1], [1, 0, 1]]")
     void t01_5() {
         assertThat(
-                new Solution().intersection(
+                (Point) TestUt.call(
+                        new Solution(),
+                        "intersection",
                         new int[]{0, 1, -1},
                         new int[]{1, 0, 1}
                 )
@@ -78,51 +89,66 @@ public class Tests {
     @DisplayName("교점들, [[1, -1, 0], [2, -1, 0]]")
     void t02() {
         assertThat(
-                new Solution().intersections(
+                (Points) TestUt.callArr(
+                        new Solution(),
+                        "intersections",
                         new int[][]{{0, 1, -1}, {1, 0, 1}}
                 )
         ).isEqualTo(
-                Set.of(Point.of(-1, 1))
+                Points.of(Point.of(-1, 1))
         );
     }
+
     @Test
     @DisplayName("교점들, [[0, 1, -1], [1, 0, -1], [1, 0, 1]]")
     void t02_2() {
         assertThat(
-                new Solution().intersections(
+                (Points) TestUt.callArr(
+                        new Solution(),
+                        "intersections",
                         new int[][]{{0, 1, -1}, {1, 0, -1}, {1, 0, 1}}
                 )
         ).isEqualTo(
-                Set.of(Point.of(1, 1), Point.of(-1, 1))
+                Points.of(Point.of(1, 1), Point.of(-1, 1))
         );
     }
+
     @Test
     @DisplayName("교점들, [[1, -1, 0], [2, -1, 0], [4, -1, 0]]")
     void t02_3() {
         assertThat(
-                new Solution().intersections(
+                (Points) TestUt.callArr(
+                        new Solution(),
+                        "intersections",
                         new int[][]{{1, -1, 0}, {2, -1, 0}, {4, -1, 0}}
                 )
         ).isEqualTo(
-                Set.of(Point.of(0, 0))
+                Points.of(Point.of(0, 0))
         );
     }
+
     @Test
     @DisplayName("교점들, [[2, -1, 4], [-2, -1, 4], [0, -1, 1], [5, -8, -12], [5, 8, 12]]")
     void t02_4() {
         assertThat(
-                new Solution().intersections(
+                (Points) TestUt.callArr(
+                        new Solution(),
+                        "intersections",
                         new int[][]{{2, -1, 4}, {-2, -1, 4}, {0, -1, 1}, {5, -8, -12}, {5, 8, 12}}
                 )
         ).isEqualTo(
-                Set.of(Point.of(4, 1), Point.of(4, -4),Point.of(-4, -4), Point.of(-4, 1), Point.of(0, 4))
+                Points.of(Point.of(4, 1), Point.of(4, -4), Point.of(-4, -4), Point.of(-4, 1), Point.of(0, 4))
         );
     }
+
     @Test
     @DisplayName("minPoint, [Point.of(1, 1), Point.of(-1, 1)]")
     void t03() {
         assertThat(
-                new Solution().getMinPoint(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                (Point) TestUt.call(
+                        Points.of(Point.of(1, 1), Point.of(-1, 1)),
+                        "getMinPoint"
+                )
         ).isEqualTo(
                 Point.of(-1, 1)
         );
@@ -132,7 +158,10 @@ public class Tests {
     @DisplayName("minPoint, [Point.of(-5, 1), Point.of(-1, -7)]")
     void t03_2() {
         assertThat(
-                new Solution().getMinPoint(Set.of(Point.of(-5, 1), Point.of(-1, -7)))
+                (Point) TestUt.call(
+                        Points.of(Point.of(-5, 1), Point.of(-1, -7)),
+                        "getMinPoint"
+                )
         ).isEqualTo(
                 Point.of(-5, -7)
         );
@@ -142,7 +171,10 @@ public class Tests {
     @DisplayName("maxPoint, [Point.of(1, 1), Point.of(-1, 1)]")
     void t04() {
         assertThat(
-                new Solution().getMaxPoint(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                (Point) TestUt.call(
+                        Points.of(Point.of(1, 1), Point.of(-1, 1)),
+                        "getMaxPoint"
+                )
         ).isEqualTo(
                 Point.of(1, 1)
         );
@@ -152,16 +184,23 @@ public class Tests {
     @DisplayName("maxPoint, [Point.of(4, 1), Point.of(-1, 6)]")
     void t04_2() {
         assertThat(
-                new Solution().getMaxPoint(Set.of(Point.of(4, 1), Point.of(-1, 6)))
+                (Point) TestUt.call(
+                        Points.of(Point.of(4, 1), Point.of(-1, 6)),
+                        "getMaxPoint"
+                )
         ).isEqualTo(
                 Point.of(4, 6)
         );
     }
+
     @Test
     @DisplayName("emptyMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
     void t05() {
         assertThat(
-                new Solution().emptyMatrix(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                (char[][]) TestUt.call(
+                        Points.of(Point.of(1, 1), Point.of(-1, 1)),
+                        "emptyMatrix"
+                )
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.'}
@@ -173,7 +212,10 @@ public class Tests {
     @DisplayName("emptyMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
     void t05_2() {
         assertThat(
-                new Solution().emptyMatrix(Set.of(Point.of(4, -7), Point.of(-1, 6)))
+                (char[][]) TestUt.call(
+                        Points.of(Point.of(4, -7), Point.of(-1, 6)),
+                        "emptyMatrix"
+                )
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.', '.', '.', '.'},
@@ -192,13 +234,18 @@ public class Tests {
                         {'.', '.', '.', '.', '.', '.'}
                 }
         );
-    }@Test
+    }
+
+    @Test
     @DisplayName("positivePoints, [Point.of(1, 1), Point.of(-1, 1)]")
     void t06() {
         assertThat(
-                new Solution().positivePoints(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                (Points) TestUt.call(
+                        Points.of(Point.of(1, 1), Point.of(-1, 1)),
+                        "positivePoints"
+                )
         ).isEqualTo(
-                Set.of(Point.of(2, 0), Point.of(0, 0))
+                Points.of(Point.of(2, 0), Point.of(0, 0))
         );
     }
 
@@ -206,16 +253,20 @@ public class Tests {
     @DisplayName("positivePoints, [Point.of(4, -7), Point.of(-1, 6)]")
     void t06_2() {
         assertThat(
-                new Solution().positivePoints(Set.of(Point.of(4, -7), Point.of(-1, 6)))
+                (Points) TestUt.call(
+                        Points.of(Point.of(4, -7), Point.of(-1, 6)),
+                        "positivePoints"
+                )
         ).isEqualTo(
-                Set.of(Point.of(5, 0), Point.of(0, 13))
+                Points.of(Point.of(5, 0), Point.of(0, 13))
         );
     }
+
     @Test
-    @DisplayName("transformToMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
+    @DisplayName("toMatrix, [Point.of(1, 1), Point.of(-1, 1)]")
     void t07() {
         assertThat(
-                new Solution().transformToMatrix(Set.of(Point.of(1, 1), Point.of(-1, 1)))
+                Points.of(Point.of(1, 1), Point.of(-1, 1)).toMatrix()
         ).isEqualTo(
                 new char[][]{
                         {'*', '.', '*'}
@@ -224,10 +275,10 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("transformToMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
+    @DisplayName("toMatrix, [Point.of(4, -7), Point.of(-1, 6)]")
     void t07_2() {
         assertThat(
-                new Solution().transformToMatrix(Set.of(Point.of(4, -7), Point.of(-1, 6)))
+                Points.of(Point.of(4, -7), Point.of(-1, 6)).toMatrix()
         ).isEqualTo(
                 new char[][]{
                         {'.', '.', '.', '.', '.', '*'},
@@ -247,11 +298,14 @@ public class Tests {
                 }
         );
     }
+
     @Test
     @DisplayName("drawOnCoordinate, 1st")
     void t08() {
         assertThat(
-                new Solution().drawOnCoordinate(
+                (String[]) TestUt.callArr(
+                        new Solution(),
+                        "drawOnCoordinate",
                         new char[][]{
                                 {'*', '.'},
                                 {'.', '*'},
@@ -269,7 +323,9 @@ public class Tests {
     @DisplayName("drawOnCoordinate, 2nd")
     void t08_2() {
         assertThat(
-                new Solution().drawOnCoordinate(
+                (String[]) TestUt.callArr(
+                        new Solution(),
+                        "drawOnCoordinate",
                         new char[][]{
                                 {'.', '.', '.', '.', '.', '*'},
                                 {'.', '.', '.', '.', '.', '.'},
@@ -284,7 +340,7 @@ public class Tests {
                                 {'.', '.', '.', '.', '.', '.'},
                                 {'.', '.', '.', '.', '.', '.'},
                                 {'.', '.', '.', '.', '.', '.'},
-                                {'*', '.', '.', '.', '.', '.'}
+                                {'*', '.', '.', '.', '.', '.'},
                         }
                 )
         ).isEqualTo(
@@ -308,7 +364,7 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("answer, [[1, -1, 0], [2, -1, 0]]")
+    @DisplayName("solution, [[1, -1, 0], [2, -1, 0]]")
     void t09() {
         assertThat(
                 new Solution().solution(new int[][]{{1, -1, 0}, {2, -1, 0}})
@@ -318,7 +374,7 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("answer, [[1, -1, 0], [2, -1, 0], [4, -1, 0]]")
+    @DisplayName("solution, [[1, -1, 0], [2, -1, 0], [4, -1, 0]]")
     void t09_2() {
         assertThat(
                 new Solution().solution(new int[][]{{1, -1, 0}, {2, -1, 0}, {4, -1, 0}})
@@ -328,7 +384,7 @@ public class Tests {
     }
 
     @Test
-    @DisplayName("answer, [[0, 1, -1], [1, 0, -1], [1, 0, 1]]")
+    @DisplayName("solution, [[0, 1, -1], [1, 0, -1], [1, 0, 1]]")
     void t09_3() {
         assertThat(
                 new Solution().solution(new int[][]{{0, 1, -1}, {1, 0, -1}, {1, 0, 1}})
