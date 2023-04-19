@@ -8,6 +8,8 @@ public class Main {
 }
 
 class Solution {
+    public static boolean isDebug = false;
+
     public int[][] solution(int n) {
         return new Hanoi(1, 3, n).toArray();
     }
@@ -15,22 +17,30 @@ class Solution {
 
 class Hanoi {
     private final List<int[]> paths = new ArrayList<>();
+    private int calculateCallCount = 0;
 
     public Hanoi(int from, int to, int n) {
-        calculate(from, to, n);
+        calculate(from, to, n, 1);
     }
 
-    private void calculate(int from, int to, int n) {
+    private void calculate(int from, int to, int n, int depth) {
+        calculateCallCount++;
+        String debugLineHead = "\t".repeat(depth - 1) + String.format("%03d : (%d) => (%d), %d개 옮기기",
+                calculateCallCount, from, to, n);
+        if (Solution.isDebug) System.out.println(debugLineHead + " - 시작");
+
         if (n == 1) {
             addPath(from, to);
+            if (Solution.isDebug) System.out.println(debugLineHead + " - 끝(addPath)");
             return;
         }
 
         int empty = 6 - from - to;
 
-        calculate(from, empty, n - 1);
-        calculate(from, to, 1);
-        calculate(empty, to, n - 1);
+        calculate(from, empty, n - 1, depth + 1);
+        calculate(from, to, 1, depth + 1);
+        calculate(empty, to, n - 1, depth + 1);
+        if (Solution.isDebug) System.out.println(debugLineHead + " - 끝");
     }
 
     private void addPath(int from, int to) {
