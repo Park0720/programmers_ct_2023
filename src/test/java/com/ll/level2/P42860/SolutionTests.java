@@ -67,4 +67,13 @@ public class SolutionTests {
                 56
         );
     }
+    @Test
+    @DisplayName("BAB")
+    void t07() {
+        assertThat(
+                new Solution().solution("BAB")
+        ).isEqualTo(
+                3
+        );
+    }
 }

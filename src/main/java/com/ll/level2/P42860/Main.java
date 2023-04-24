@@ -15,9 +15,9 @@ class Solution {
         int diff;
         for (int i = 0; i < name.length(); i++) {
             char c = name.charAt(i);
-            if( c > 'N') diff = 26 - (c - 'A');
 
-            else diff = c - 'A';
+            diff = Math.min(26 - (c - 'A'), c - 'A');
+
             nameCost += diff;
 
         }
@@ -30,9 +30,7 @@ class Solution {
         for (int i = 0; i < name.length(); i++) {
             char c = name.charAt(i);
 
-            if( c > 'N') diff = 26 - (c - 'A');
-
-            else diff = c - 'A';
+            diff = Math.min(26 - (c - 'A'), c - 'A');
 
             if (diff > 0) {
                 moveCost = i;
