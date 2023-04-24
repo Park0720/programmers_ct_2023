@@ -40,4 +40,31 @@ public class SolutionTests {
                 3
         );
     }
+    @Test
+    @DisplayName("CBA → 4")
+    void t04() {
+        assertThat(
+                new Solution().solution("CBA")
+        ).isEqualTo(
+                4
+        );
+    }
+    @Test
+    @DisplayName("AAZ → 4")
+    void t05() {
+        assertThat(
+                new Solution().solution("AAZ")
+        ).isEqualTo(
+                3
+        );
+    }
+    @Test
+    @DisplayName("JEROEN → 56")
+    void t06() {
+        assertThat(
+                new Solution().solution("JEROEN")
+        ).isEqualTo(
+                56
+        );
+    }
 }
